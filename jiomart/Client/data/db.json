@@ -1,0 +1,179 @@
+{
+  "groceries": [
+    {
+      "id": "1",
+      "name": " Priya Fortified With Vitamin A & D Refined Sunflower Oil 1 L ",
+      "price": 145,
+      "original_price": 185,
+      "image": "/assets/groceries/groceries1.webp"
+    },
+    {
+      "id": "2",
+      "name": " Maggi 2-Minute Masala Instant Noodles 560 g ",
+      "description": "Refreshing Soft Drink",
+      "price": 92,
+      "original_price": 120,
+      "image": "/assets/groceries/groceries2.webp",
+      "discount": 23
+    },
+    {
+      "id": "3",
+      "name": " Bharat Rice 10 kg (Bag) ",
+      "price": 330,
+      "original_price": 340,
+      "image": "/assets/groceries/groceries3.webp",
+      "discount": 2
+    },
+    {
+      "id": "4",
+      "name": " Good Life Chakki Atta 10 kg ",
+      "price": 395,
+      "original_price": 450,
+      "image": "/assets/groceries/groceries4.webp",
+      "discount": 12
+    },
+    {
+      "id": "5",
+      "name": " Maaza Mango Drink 1.2 L ",
+      "price": 75,
+      "original_price": 120,
+      "image": "/assets/groceries/groceries5.webp",
+      "discount": 37
+    },
+    {
+      "id": "6",
+      "name": " Good Life Refined Sunflower Oil 1 L ",
+      "price": 82,
+      "original_price": 130,
+      "image": "/assets/groceries/groceries6.webp",
+      "discount": 36
+    },
+    {
+      "id": "7",
+      "name": " Fortune Sunlite Refined Sunflower Oil 1 L ",
+      "price": 70,
+      "original_price": 115,
+      "image": "/assets/groceries/groceries7.webp",
+      "discount": 39
+    },
+    {
+      "id": "8",
+      "name": " Surf Excel Easy Wash Detergent Powder 5 kg ",
+      "price": 450,
+      "original_price": 600,
+      "image": "/assets/groceries/groceries8.webp",
+      "discount": 25
+    },
+    {
+      "id": "9",
+      "name": " Britannia Nutri Choice Hi-Fibre Digestive Biscuits 1 kg ",
+      "price": 130,
+      "original_price": 180,
+      "image": "/assets/groceries/groceries9.webp",
+      "discount": 27
+    },
+    {
+      "id": "10",
+      "name": "Pears Pure & Gentle Soap with Natural Oils 125 g (Buy 4 Get 1 Free)",
+      "price": 242,
+      "original_price": 372,
+      "image": "/assets/groceries/groceries10.webp",
+      "discount": 34
+    }
+  ],
+  "HomeProducts": [
+    {
+      "id": "1",
+      "name": "Comfort 4-Piece Bedding Set",
+      "price": 120,
+      "original_price": 150,
+      "image": "/assets/Homeproducts/Home1.webp",
+      "discount": 20
+    },
+    {
+      "id": "2",
+      "name": "Smart LED Bulb 9W",
+      "price": 15,
+      "original_price": 20,
+      "image": "/assets/Homeproducts/Home2.webp",
+      "discount": 25
+    },
+    {
+      "id": "3",
+      "name": "Cordless Vacuum Cleaner",
+      "price": 250,
+      "original_price": 300,
+      "image": "/assets/Homeproducts/Home3.webp",
+      "discount": 16
+    },
+    {
+      "id": "4",
+      "name": "Adjustable Standing Desk",
+      "price": 200,
+      "original_price": 250,
+      "image": "/assets/Homeproducts/Home4.webp",
+      "discount": 20
+    },
+    {
+      "id": "5",
+      "name": "Adjustable Standing Desk",
+      "price": 200,
+      "original_price": 250,
+      "image": "/assets/Homeproducts/Home5.webp",
+      "discount": 20
+    },
+    {
+      "id": "6",
+      "name": "Adjustable Standing Desk",
+      "price": 200,
+      "original_price": 250,
+      "image": "/assets/Homeproducts/Home6.webp",
+      "discount": 20
+    },
+    {
+      "id": "7",
+      "name": "Adjustable Standing Desk",
+      "price": 200,
+      "original_price": 250,
+      "image": "/assets/Homeproducts/Home7.webp",
+      "discount": 20
+    },
+    {
+      "id": "8",
+      "name": "Adjustable Standing Desk",
+      "price": 200,
+      "original_price": 250,
+      "image": "/assets/Homeproducts/Home8.webp",
+      "discount": 20
+    }
+  ],
+  "users": [
+    {
+      "id": "cd16",
+      "number": "8374653657",
+      "email": "niharika@gmail.com",
+      "password": "niharika@123"
+    },
+    {
+      "id": "f6aa",
+      "number": "8297423472",
+      "email": "niharikaa@gmail.com",
+      "password": "niharika@123"
+    },
+    {
+      "id": "43c2",
+      "number": "7232399039",
+      "email": "niharikaaa@gmail.com",
+      "password": "niharika@gmail.com"
+    },
+    {
+      "id": "d3c4",
+      "number": "4389503485",
+      "email": "shiva@gmail.com",
+      "password": "shiva@123"
+    }
+  ],
+  "login":[
+    {}
+  ]
+}
