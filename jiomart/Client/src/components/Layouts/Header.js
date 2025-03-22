@@ -10,18 +10,6 @@ import { useCart } from "../../context/CartContext";
 
 export const Header = ({endPointState,setEndPointState}) => {
   const { total, cartList } = useCart();
-  // Sample categories for the navigation bar
-  // const categories = [
-  //   "Groceries",
-  //   "Home & Lifestyle",
-  //   "Electronics",
-  //   "Fashion",
-  //   "Industrial & Professional Supplies",
-  //   "Precious Jewellery",
-  //   "Wellness",
-  //   "All Categories",
-  // ];
-
   return (
     <header className="bg-[#0078ad] text-white">
       <div className="container  m-auto mx-auto px-8 py-2" >
@@ -56,14 +44,8 @@ export const Header = ({endPointState,setEndPointState}) => {
                     <span className="text-white text-sm absolute -top-2 right-2 bg-red-700 px-1.5 rounded-full ">{cartList.length}</span>
                   </button>
                 </div>
-
               </Link>
-
-
-
             </button>
-
-
             <button className="flex items-center gap-2">
               <FaUserCircle className="h-5 w-5" />
               <Link to="signin">
@@ -80,13 +62,6 @@ export const Header = ({endPointState,setEndPointState}) => {
       <nav className="border-t border-white/10 bg-[#0c5273] text-white">
         <div className="container flex items-center justify-between px-8 py-2">
           <ul className="container flex flex-wrap items-center gap-10 px-4 py-2 ml-[140px]">
-            {/* {categories.map((category) => (
-              <li key={category}>
-                <Link to={`/groceries`} className="text-sm hover:text-white/80">
-                  {category}                 
-                </Link>
-              </li>
-            ))} */}
             <div className="groceries-menu relative inline-block group">
               <Link to={`/groceries`}>
                 <span onClick={()=>setEndPointState("Groceries")} className="cursor-pointer text-sm hover:text-white/80">Groceries</span>

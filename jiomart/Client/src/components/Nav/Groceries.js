@@ -205,6 +205,7 @@ export const Groceries = ({ endPointState, setEndPointState }) => {
     navigate(`/groceries/${product.id}`);
   };
 
+
   const arrayBufferToBase64 = (buffer) => {
     let binary = '';
     const bytes = new Uint8Array(buffer);
@@ -214,44 +215,47 @@ export const Groceries = ({ endPointState, setEndPointState }) => {
     }
     return window.btoa(binary);
   };
-
+  
   // Fetching data for grocery list
   useEffect(() => {
     async function fetchProducts() {
-      console.log(endPointState,"endpointstate....")
-      if(endPointState=="Groceries"){
+      console.log(endPointState, "endpointstate....");
+  
+      if (endPointState === "Groceries") {
         console.log("entered...");
+  
         const response = await fetch(`http://localhost:5000/product/category/${endPointState}`);
-
         const data = await response.json();
-        // console.log(data, "pppp")
-        console.log(data.products[0].image_data.data,"data is gottt")
-        try{
-          const byteArray = new Uint8Array(data.products[0].image_data.data);
-          // console.log(byteArray,"bytearray")
-          const base64String = arrayBufferToBase64(byteArray);
-          // console.log( "stringhghghghg-------", base64String, "stringhghghghg-------")
-
-         // const base64Image = `data:image/webp;base64,${Buffer.from(data.image_data.data).toString('base64')}`;
-         const base64Image = `data:image/webp;base64,${base64String}`;
-        //  console.log(base64Image,"base64")
-
-
-        }catch (error) {
+        console.log(data.products, "products data");
+  
+        try {
+          const images = data.products.map(product => {
+            const byteArray = new Uint8Array(product.image_data.data);
+            const base64String = arrayBufferToBase64(byteArray);
+            const base64Image = `data:image/webp;base64,${base64String}`;
+            console.log(base64Image);
+            return base64Image;
+          });
+          setGroceryList(data.products); 
+          setProductsImage(images);  
+  
+        } catch (error) {
           console.error('Error fetching products Images:', error);
         }
-
-      }else{
-        console.log("at else block")
-      const response = await fetch(`http://localhost:5000/product/category/${endPointState}`);
-      const data = await response.json();
-      setGroceryList(data);
+  
+      } else {
+        console.log("at else block");
+        const response = await fetch(`http://localhost:5000/product/category/${endPointState}`);
+        const data = await response.json();
+        setGroceryList(data);
       }
-      //setGroceryList(data);
     }
-
+  
     fetchProducts();
   }, [endPointState]);
+  
+  
+  
 
   // Fetching data for subcategories list
   useEffect(() => {
@@ -375,9 +379,9 @@ export const Groceries = ({ endPointState, setEndPointState }) => {
           <div className="flex-1 p-3">
             <div className="flex flex-col gap-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 shadow-[0]">
-                {sortedGroceryList().map((product) => (
+                {sortedGroceryList().map((product, index) => (
                   <div key={product.id} onClick={() => handleProduct(product)}>
-                    <Card product={product} />
+                    <Card product={product}   image={productsImage[index]} />
                   </div>
                 ))}
               </div>
