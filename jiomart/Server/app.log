@@ -194,3 +194,14 @@
 {"code":"ER_BAD_FIELD_ERROR","errno":1054,"index":0,"level":"error","sql":"\n        SELECT p.product_id, \n               p.product_name, \n               p.product_image, \n               p.description, \n               p.price, \n               p.original_price, \n               p.stock_quantity,\n               c.category_name, \n               sc.subcategory_name\n        FROM products p\n        JOIN SubCategories sc ON p.SubCategories_id = sc.SubCategories_id\n        JOIN categories c ON sc.category_id = c.category_id\n        WHERE c.category_name = 'Groceries';\n    ","sqlMessage":"Unknown column 'p.product_image' in 'field list'","sqlState":"42S22","timestamp":"2025-03-21T12:38:28.759Z"}
 {"level":"info","message":"get the SubCategories data","timestamp":"2025-03-21T12:40:29.436Z"}
 {"level":"info","message":"get the SubCategories data","timestamp":"2025-03-21T12:40:29.450Z"}
+{"code":"ER_PARSE_ERROR","errno":1064,"index":0,"level":"error","sql":"\n  SELECT \n    p.product_id, \n    p.product_name, \n    p.description, \n    p.price, \n    p.original_price, \n    p.stock_quantity, \n    p.star, \n    pi.image_name, \n    pi.image_data\nFROM \n    products p\nINNER JOIN \n    productimages pi ON p.product_id = pi.product_id;\n\n         JOIN SubCategories sc ON p.SubCategories_id = sc.SubCategories_id\n              JOIN categories c ON sc.category_id = c.category_id\n         WHERE c.category_name = 'Groceries';\n","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JOIN SubCategories sc ON p.SubCategories_id = sc.SubCategories_id\n              ' at line 16","sqlState":"42000","timestamp":"2025-03-22T06:11:54.980Z"}
+{"level":"info","message":"get the SubCategories data","timestamp":"2025-03-22T06:58:20.036Z"}
+{"level":"info","message":"get the SubCategories data","timestamp":"2025-03-22T06:58:20.055Z"}
+{"level":"info","message":"get the SubCategories data","timestamp":"2025-03-22T06:58:38.758Z"}
+{"level":"info","message":"get the SubCategories data","timestamp":"2025-03-22T06:58:38.761Z"}
+{"level":"info","message":"get the SubCategories data","timestamp":"2025-03-22T06:59:24.496Z"}
+{"level":"info","message":"get the SubCategories data","timestamp":"2025-03-22T06:59:24.500Z"}
+{"level":"info","message":"get the SubCategories data","timestamp":"2025-03-22T07:22:12.914Z"}
+{"level":"info","message":"get the SubCategories data","timestamp":"2025-03-22T07:22:12.918Z"}
+{"level":"info","message":"get the SubCategories data","timestamp":"2025-03-22T07:43:47.283Z"}
+{"level":"info","message":"get the SubCategories data","timestamp":"2025-03-22T07:43:47.289Z"}

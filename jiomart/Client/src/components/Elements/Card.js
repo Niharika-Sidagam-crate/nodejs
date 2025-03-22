@@ -61,11 +61,11 @@ import { FaPlus } from "react-icons/fa6";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { useCart } from '../../context/CartContext';
 
-export const Card = ({ product }) => {
+export const Card = ({ product, image }) => {
 
 
   const { addToCart } = useCart();
-  const { product_name, image, price, original_price } = product;
+  const { product_name, price, original_price } = product;
 
   // Calculate discount percentage
   const discountPercentage = original_price && price ? ((original_price - price) / original_price) * 100 : 0;
@@ -77,11 +77,12 @@ export const Card = ({ product }) => {
 
       {/* Product Image */}
       <Link to={`/${product.id}`}>
-        <img
-          className="w-full h-64 object-contain"
-          src={image}
-          alt={name}
-        />
+      <img
+        className="w-full h-64 object-contain"
+        src={image}
+        alt={product.product_name}
+      />
+
       </Link>
 
       {/* Product Details */}
