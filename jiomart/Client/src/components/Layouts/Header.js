@@ -6,9 +6,26 @@ import { FaUserCircle } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import { useState } from "react";
+import { useEffect } from "react";
 
 
-export const Header = ({endPointState,setEndPointState}) => {
+export const Header = () => {
+
+  const [CategoryData, setCategoryData] = useState([]);
+  const [SubCategoriesData, setSubCategoriesData] = useState({});
+  const [EndPoint, setEndpoint] = useState("");
+
+  useEffect(() => {
+    async function fetchcategories() {
+      const response = await fetch(`https://localhost:7151/api/Category`);
+      const data = await response.json();
+      // console.log(data, "categories data");
+      setCategoryData(data);
+    }
+    fetchcategories();
+  }, [EndPoint]);
+
   const { total, cartList } = useCart();
   return (
     <header className="bg-[#0078ad] text-white">
@@ -49,9 +66,9 @@ export const Header = ({endPointState,setEndPointState}) => {
             <button className="flex items-center gap-2">
               <FaUserCircle className="h-5 w-5" />
               <Link to="signin">
-              <span>Sign In</span>
+                <span>Sign In</span>
               </Link>
-              
+
             </button>
             <button className="lg:hidden">
               <GiHamburgerMenu className="h-5 w-5" />
@@ -62,156 +79,44 @@ export const Header = ({endPointState,setEndPointState}) => {
       <nav className="border-t border-white/10 bg-[#0c5273] text-white">
         <div className="container flex items-center justify-between px-8 py-2">
           <ul className="container flex flex-wrap items-center gap-10 px-4 py-2 ml-[140px]">
-            <div className="groceries-menu relative inline-block group">
-              <Link to={`/groceries`}>
-                <span onClick={()=>setEndPointState("Groceries")} className="cursor-pointer text-sm hover:text-white/80">Groceries</span>
-              </Link>
 
-              {/* Dropdown menu, visible on hover */}
-              <div className="groceries-dropdown text-sm hidden absolute mt-2 bg-white shadow-lg  p-2.5 z-50 group-hover:block w-72 border border-gray-300">
-                <ul className="space-y-2 text-left font-semibold">
-                  <li className="text-gray-700 hover:text-green-600card ">Biscuits, Drinks & Packaged Foods</li>
-                  <li className="text-gray-700 hover:text-green-600">Fruits & Vegetables</li>
-                  <li className="text-gray-700 hover:text-green-600">Cooking Essentials</li>
-                  <li className="text-gray-700 hover:text-green-600">Dairy & Bakery</li>
-                  <li className="text-gray-700 hover:text-green-600">Personal Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Beauty</li>
-                  <li className="text-gray-700 hover:text-green-600">Mom & Baby Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Home Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Kitchenware</li>
-                  <li className="text-gray-700 hover:text-green-600">Tableware</li>
-                </ul>
+
+
+            {CategoryData.map((category) => (
+              <div
+                key={category.CategoryId}
+                className="groceries-menu relative inline-block group"
+                onMouseEnter={() => {
+                  // Only fetch if not already fetched
+                  if (!SubCategoriesData[category.CategoryId]) {
+                    // fetchSubcategoriesByCategoryId(category.CategoryId);
+                  }
+                }}
+              >
+                <Link to={`/${category.categoryName}`}>
+                  <span
+                    className="cursor-pointer text-sm hover:text-white/80"
+                  >
+                    {category.categoryName}
+                  </span>
+                </Link>
+
+                {/* Dropdown */}
+                <div className="groceries-dropdown text-sm hidden absolute mt-2 bg-white shadow-lg p-2.5 z-50 group-hover:block w-72 border border-gray-300">
+                  <ul className="space-y-2 text-left font-semibold">
+                    {SubCategoriesData[category.CategoryId]?.length > 0 ? (
+                      SubCategoriesData[category.CategoryId].map(sub => (
+                        <li key={sub.subcategoryId} className="text-gray-700 hover:text-green-600">
+                          {sub.subCategoryName}
+                        </li>
+                      ))
+                    ) : (
+                      <li className="text-gray-500 italic">Loading...</li>
+                    )}
+                  </ul>
+                </div>
               </div>
-            </div>
-
-            <div className="groceries-menu relative inline-block group">
-              <Link to={`/HomeLifestyle`} onClick={()=>setEndPointState("HomeProducts")}>
-                <span  className="cursor-pointer text-sm hover:text-white/80" >Home & Lifestyle</span>
-              </Link>
-              {/* Dropdown menu, visible on hover */}
-              <div className="groceries-dropdown text-sm hidden absolute mt-2 bg-white shadow-lg  p-2.5 z-50 group-hover:block w-72 border border-gray-300">
-                <ul className="space-y-2 text-left font-semibold">
-                  <li className="text-gray-700 hover:text-green-600card ">Biscuits, Drinks & Packaged Foods</li>
-                  <li className="text-gray-700 hover:text-green-600">Fruits & Vegetables</li>
-                  <li className="text-gray-700 hover:text-green-600">Cooking Essentials</li>
-                  <li className="text-gray-700 hover:text-green-600">Dairy & Bakery</li>
-                  <li className="text-gray-700 hover:text-green-600">Personal Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Beauty</li>
-                  <li className="text-gray-700 hover:text-green-600">Mom & Baby Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Home Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Kitchenware</li>
-                  <li className="text-gray-700 hover:text-green-600">Tableware</li>
-                </ul>
-              </div>
-
-            </div>
-
-            <div className="groceries-menu relative inline-block group">
-              <Link to={`/Electronics`}  onClick={()=>setEndPointState("Electronics")}>
-                <span className="cursor-pointer text-sm hover:text-white/80">Electronics</span>
-              </Link>
-              {/* Dropdown menu, visible on hover */}
-              <div className="groceries-dropdown text-sm hidden absolute mt-2 bg-white shadow-lg  p-2.5 z-50 group-hover:block w-72 border border-gray-300">
-                <ul className="space-y-2 text-left font-semibold">
-                  <li className="text-gray-700 hover:text-green-600card ">Biscuits, Drinks & Packaged Foods</li>
-                  <li className="text-gray-700 hover:text-green-600">Fruits & Vegetables</li>
-                  <li className="text-gray-700 hover:text-green-600">Cooking Essentials</li>
-                  <li className="text-gray-700 hover:text-green-600">Dairy & Bakery</li>
-                  <li className="text-gray-700 hover:text-green-600">Personal Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Beauty</li>
-                  <li className="text-gray-700 hover:text-green-600">Mom & Baby Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Home Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Kitchenware</li>
-                  <li className="text-gray-700 hover:text-green-600">Tableware</li>
-                </ul>
-              </div>
-            </div>
-
-
-            <div className="groceries-menu relative inline-block group">
-              <Link to={`/Supplies`}>
-                <span className="cursor-pointer text-sm hover:text-white/80">Industrial & Professional Supplies</span>
-              </Link>
-              {/* Dropdown menu, visible on hover */}
-              <div className="groceries-dropdown text-sm hidden absolute mt-2 bg-white shadow-lg  p-2.5 z-50 group-hover:block w-72 border border-gray-300">
-                <ul className="space-y-2 text-left font-semibold">
-                  <li className="text-gray-700 hover:text-green-600card ">Biscuits, Drinks & Packaged Foods</li>
-                  <li className="text-gray-700 hover:text-green-600">Fruits & Vegetables</li>
-                  <li className="text-gray-700 hover:text-green-600">Cooking Essentials</li>
-                  <li className="text-gray-700 hover:text-green-600">Dairy & Bakery</li>
-                  <li className="text-gray-700 hover:text-green-600">Personal Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Beauty</li>
-                  <li className="text-gray-700 hover:text-green-600">Mom & Baby Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Home Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Kitchenware</li>
-                  <li className="text-gray-700 hover:text-green-600">Tableware</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="groceries-menu relative inline-block group">
-              <Link to={`/Jewellery`}>
-                <span className="cursor-pointer text-sm hover:text-white/80">Precious Jewellery</span>
-              </Link>
-              {/* Dropdown menu, visible on hover */}
-              <div className="groceries-dropdown text-sm hidden absolute mt-2 bg-white shadow-lg  p-2.5 z-50 group-hover:block w-72 border border-gray-300">
-                <ul className="space-y-2 text-left font-semibold">
-                  <li className="text-gray-700 hover:text-green-600card ">Biscuits, Drinks & Packaged Foods</li>
-                  <li className="text-gray-700 hover:text-green-600">Fruits & Vegetables</li>
-                  <li className="text-gray-700 hover:text-green-600">Cooking Essentials</li>
-                  <li className="text-gray-700 hover:text-green-600">Dairy & Bakery</li>
-                  <li className="text-gray-700 hover:text-green-600">Personal Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Beauty</li>
-                  <li className="text-gray-700 hover:text-green-600">Mom & Baby Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Home Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Kitchenware</li>
-                  <li className="text-gray-700 hover:text-green-600">Tableware</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="groceries-menu relative inline-block group">
-              <Link to={`/Wellness`}>
-                <span className="cursor-pointer text-sm hover:text-white/80">Wellness</span>
-              </Link>
-              {/* Dropdown menu, visible on hover */}
-              <div className="groceries-dropdown text-sm hidden absolute mt-2 bg-white shadow-lg  p-2.5 z-50 group-hover:block w-72 border border-gray-300">
-                <ul className="space-y-2 text-left font-semibold">
-                  <li className="text-gray-700 hover:text-green-600card ">Biscuits, Drinks & Packaged Foods</li>
-                  <li className="text-gray-700 hover:text-green-600">Fruits & Vegetables</li>
-                  <li className="text-gray-700 hover:text-green-600">Cooking Essentials</li>
-                  <li className="text-gray-700 hover:text-green-600">Dairy & Bakery</li>
-                  <li className="text-gray-700 hover:text-green-600">Personal Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Beauty</li>
-                  <li className="text-gray-700 hover:text-green-600">Mom & Baby Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Home Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Kitchenware</li>
-                  <li className="text-gray-700 hover:text-green-600">Tableware</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="groceries-menu relative inline-block group">
-              <Link to={`/All`}>
-                <span className="cursor-pointer text-sm hover:text-white/80">All Categories</span>
-              </Link>
-
-              {/* Dropdown menu, visible on hover */}
-              <div className="groceries-dropdown text-sm hidden absolute mt-2 bg-white shadow-lg  p-2.5 z-50 group-hover:block w-72 border border-gray-300">
-                <ul className="space-y-2 text-left font-semibold">
-                  <li className="text-gray-700 hover:text-green-600card ">Biscuits, Drinks & Packaged Foods</li>
-                  <li className="text-gray-700 hover:text-green-600">Fruits & Vegetables</li>
-                  <li className="text-gray-700 hover:text-green-600">Cooking Essentials</li>
-                  <li className="text-gray-700 hover:text-green-600">Dairy & Bakery</li>
-                  <li className="text-gray-700 hover:text-green-600">Personal Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Beauty</li>
-                  <li className="text-gray-700 hover:text-green-600">Mom & Baby Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Home Care</li>
-                  <li className="text-gray-700 hover:text-green-600">Kitchenware</li>
-                  <li className="text-gray-700 hover:text-green-600">Tableware</li>
-                </ul>
-              </div>
-            </div>
+            ))}
           </ul>
         </div>
       </nav>

@@ -268,61 +268,6 @@ app.post('/save-image', upload.single('file'), (req, res) => {
     }
 });
 
-// GET products by category
-
-// app.get("/product/category/:category_name", (req, res) => {
-//     const category_name = req.params.category_name;
-
-//     const productSql = `
-//         SELECT p.product_id, 
-//                p.product_name, 
-//                p.description, 
-//                p.price, 
-//                p.original_price, 
-//                p.stock_quantity,
-//                c.category_name, 
-//                sc.subcategory_name,
-//                pi.image_name,
-//                pi.image_data
-//         FROM products p
-//         JOIN SubCategories sc ON p.SubCategories_id = sc.SubCategories_id
-//         JOIN categories c ON sc.category_id = c.category_id
-//         LEFT JOIN 
-//             productimages pi ON p.product_id = pi.product_id
-//         WHERE c.category_name = ?;
-//     `;
-//     con.query(productSql, [category_name], (err, products) => {
-//         if (err) {
-//             console.error(err);
-//             return res.status(500).send("Server Error");
-//         }
-//         if (products.length === 0) {
-//             return res.status(404).send("No products found for this category");
-//         }
-//             const imageMap = {};
-//             products.forEach(image => {
-//                 const imagetype = image.image_name.split('.').pop().toLowerCase();
-//                 let contentType = 'application/octet-stream';
-//                 if (imagetype === 'jpg' || imagetype === 'jpeg') {
-//                     contentType = 'image/jpeg';
-//                 } else if (imagetype === 'webp') {
-//                     contentType = 'image/webp';
-//                 } else if (imagetype === 'png') {
-//                     contentType = 'image/png';
-//                 } else if (imagetype === 'gif') {
-//                     contentType = 'image/gif';
-//                 }
-//                 imageMap[image.product_id] = {
-//                     contentType: contentType,
-//                     data: image.image_data
-//                 };
-//             });
-//             const response = {
-//               products: products,
-//             };
-//             return res.json(response);
-//         });
-//     });
 
 
 // GET products by category

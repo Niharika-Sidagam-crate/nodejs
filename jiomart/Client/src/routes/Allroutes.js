@@ -13,22 +13,30 @@ import { ProductDetails } from "../pages/ProductDetails";
 import { Signin } from "../pages/Signin";
 import { LoginPage } from "../pages/LoginPage";
 import { CartPage } from "../pages/Cart/CartPage";
+import CategoryPage from "../pages/CategoryPage";
 
 export const Allroutes = ({endPointState,setEndPointState}) => {
   console.log(endPointState,"yuytt");
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/Groceries" element={<Groceries endPointState={endPointState} setEndPointState={setEndPointState} />} />
+      {/* <Route path="/Groceries" element={<Groceries endPointState={endPointState} setEndPointState={setEndPointState} />} />
       <Route path="/Electronics" element={<Electronics />} />
       <Route path="/HomeLifestyle" element={<HomeLifestyle  endPointState={endPointState} setEndPointState={setEndPointState} />} />
-      <Route path="/Supplies" element={<Supplies />} />
-      <Route path="/Jewellery" element={<Jewellery />} />
-      <Route path="/Fashion" element={<Fashion />} />
-      <Route path="/Wellness" element={<Wellness />} />
+      <Route path="/Supplies" element={<Supplies />} /> */}
+      {/* <Route path="/Jewellery" element={<Jewellery />} /> */}
+      {/* <Route path="/Fashion" element={<Fashion />} />
+      <Route path="/Wellness" element={<Wellness />} /> */}
+
+      <Route path="/:categoryName" element={<CategoryPage />} />
+
+      <Route path="/productDetails/:id" element={<ProductDetails />} />
+
+
       <Route path="/All" element={<All />} />
 
-      <Route path={`${endPointState}/:id`} element={<ProductDetails  endPointState={endPointState} setEndPointState={setEndPointState} />} /> {/* Corrected */}
+      {/* <Route path={`${endPointState}/:id`} element={<ProductDetails  endPointState={endPointState} setEndPointState={setEndPointState} />} />  */}
+       <Route path={`${endPointState}/:id`} element={<ProductDetails />} /> 
       {/* <Route path="/groceries/:id" element={<ProductDetails  endPointState={endPointState} setEndPointState={setEndPointState} />} /> {/* Corrected */}
       
       <Route path="cartPage" element={<CartPage />} />
